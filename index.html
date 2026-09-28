@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabikshan - Designer & Video Creator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f7fc;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: #2d1b4e;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a78bfa;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #a78bfa;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%);
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 24px;
+            color: #a78bfa;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #d4c5f9;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: #a78bfa;
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #9366e8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
+        }
+
+        .cta-button-outline {
+            background: transparent;
+            border: 2px solid #a78bfa;
+            color: #a78bfa;
+        }
+
+        .cta-button-outline:hover {
+            background: #a78bfa;
+            color: white;
+        }
+
+        /* PORTFOLIO SECTION */
+        .portfolio-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #2d1b4e;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* CATEGORY TABS */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: white;
+            border: 2px solid #e0d5f5;
+            color: #2d1b4e;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: #a78bfa;
+            color: white;
+            border-color: #a78bfa;
+        }
+
+        .tab-button:hover {
+            border-color: #a78bfa;
+            color: #a78bfa;
+        }
+
+        /* PORTFOLIO GRID */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(167, 139, 250, 0.25);
+        }
+
+        .portfolio-item-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .portfolio-item-content {
+            padding: 25px;
+        }
+
+        .portfolio-category {
+            font-size: 12px;
+            color: #a78bfa;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2d1b4e;
+            font-weight: 700;
+        }
+
+        .portfolio-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: #f0ebf8;
+            padding: 80px 40px;
+            margin: 80px 0;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 44px;
+            margin-bottom: 30px;
+            color: #2d1b4e;
+            font-weight: 700;
+        }
+
+        .about p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            background: white;
+            padding: 25px;
+            border-left: 4px solid #a78bfa;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            border-top: 4px solid #a78bfa;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.15);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: #2d1b4e;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            color: #a78bfa;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%);
+            color: white;
+            padding: 80px 40px;
+            margin: 80px 0;
+        }
+
+        .testimonials h2 {
+            font-size: 44px;
+            margin-bottom: 60px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .stars {
+            color: #a78bfa;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .testimonial-author {
+            color: #a78bfa;
+            font-weight: 700;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: white;
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 2px solid #e0d5f5;
+            border-bottom: 2px solid #e0d5f5;
+        }
+
+        .contact h2 {
+            font-size: 44px;
+            margin-bottom: 20px;
+            color: #2d1b4e;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .contact-info a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #9366e8;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2d1b4e;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            .portfolio-section,
+            .services,
+            .contact {
+                padding: 40px 20px;
+            }
+
+            .portfolio-item-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">SABIKSHAN</div>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#portfolio">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <h1>SABIKSHAN</h1>
+    <p class="tagline">Designer & Video Creator</p>
+    <p>I help startups and ambitious businesses build premium brands through strategic design and creative direction. No cheap shortcuts. Just quality and results.</p>
+    <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Let's Work Together</a>
+        <a href="#portfolio" class="cta-button cta-button-outline">View My Work</a>
+    </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section class="portfolio-section" id="portfolio">
+    <h2 class="section-title">My Work</h2>
+    
+    <div class="category-tabs">
+        <button class="tab-button active">All Work</button>
+        <button class="tab-button">Graphic Design</button>
+        <button class="tab-button">Video Editing</button>
+        <button class="tab-button">Branding</button>
+    </div>
+
+    <div class="portfolio-grid">
+        
+        <div class="portfolio-item">
+            <div class="portfolio-item-image">📐 Graphic Design Project 1</div>
+            <div class="portfolio-item-content">
+                <div class="portfolio-category">Graphic Design</div>
+                <h3>Social Media Campaign</h3>
+                <p>Complete Instagram & TikTok design system with 30+ templates and cohesive brand aesthetic</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-item-image">🎥 Video Editing Project 1</div>
+            <div class="portfolio-item-content">
+                <div class="portfolio-category">Video Editing</div>
+                <h3>Cinematic Product Reel</h3>
+                <p>Professional 60-second product showcase with color grading, transitions, and motion graphics</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-item-image">✨ Branding Project 1</div>
+            <div class="portfolio-item-content">
+                <div class="portfolio-category">Branding</div>
+                <h3>Premium Brand Identity</h3>
+                <p>Complete logo, color system, typography, and brand guidelines for tech startup</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-item-image">📱 Graphic Design Project 2</div>
+            <div class="portfolio-item-content">
+                <div class="portfolio-category">Graphic Design</div>
+                <h3>E-commerce Product Design</h3>
+                <p>Product packaging design, business cards, and marketing collateral for premium brand</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-item-image">🎬 Video Editing Project 2</div>
+            <div class="portfolio-item-content">
+                <div class="portfolio-category">Video Editing</div>
+                <h3>Client Testimonial Videos</h3>
+                <p>5 high-impact testimonial videos with B-roll, text overlays, and brand consistency</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-item-image">🎨 Branding Project 2</div>
+            <div class="portfolio-item-content">
+                <div class="portfolio-category">Branding</div>
+                <h3>Luxury Coffee Brand</h3>
+                <p>Complete visual identity including logo, packaging design, and social media presence</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about" id="about">
+    <div class="about-content">
+        <h2>About Me</h2>
+        <p>I'm Sabikshan, a designer and video creator specializing in strategic branding and creative direction. With expertise in graphic design, branding systems, and professional video editing, I help ambitious startups and growing businesses establish credibility and drive measurable growth.</p>
+        
+        <div class="about-highlight">
+            <strong style="color: #2d1b4e; font-size: 18px;">My Philosophy:</strong>
+            <p style="margin-top: 10px; margin-bottom: 0;">Design isn't about making things pretty. It's about solving business problems. Every design decision I make is strategic, results-focused, and aligned with your growth goals. No cheap shortcuts. No AI work. Just quality thinking and exceptional execution.</p>
+        </div>
+
+        <h3 style="color: #2d1b4e; margin-top: 40px; margin-bottom: 15px;">Skills & Tools</h3>
+        <p><strong>Design:</strong> Adobe Photoshop, Illustrator, XD • Figma • Logo Design • Branding Systems</p>
+        <p><strong>Video:</strong> DaVinci Resolve • Premiere Pro • Motion Graphics • Color Grading • Video Editing</p>
+        <p><strong>Strategy:</strong> Brand Positioning • Market Analysis • Business Strategy • Client Communication</p>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services" id="services">
+    <h2 class="section-title">Services</h2>
+    
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>Brand Identity & Strategy</h3>
+            <p>Complete brand positioning, logo design, color psychology, typography system, and comprehensive brand guidelines for established presence and premium perception.</p>
+            <p class="service-price">Starting at ₹25,000</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Graphic Design</h3>
+            <p>Social media design systems, marketing collateral, print design, business cards, posters, and visual assets that maintain brand consistency across all platforms.</p>
+            <p class="service-price">Starting at ₹12,000</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Video Editing & Motion</h3>
+            <p>Professional video editing, color grading, motion graphics, cinematic effects, social media reels, testimonial videos, and brand-consistent video templates.</p>
+            <p class="service-price">Starting at ₹15,000</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Complete Brand Package</h3>
+            <p>Full brand identity + design system + social media templates + video editing support. Everything you need to establish premium presence and scale confidently.</p>
+            <p class="service-price">Starting at ₹60,000</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <h2>What My Clients Say</h2>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">"Sabikshan didn't just design our brand—he understood our business. Within 3 months, we landed our biggest client yet. The premium branding absolutely changed how people perceive us."</p>
+            <p class="testimonial-author">— Priya, Founder at TechStartup</p>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">"We tried cheap designers before. Total waste. Sabikshan understood our market from day one and created a brand that positions us as premium. Exceptional professionalism."</p>
+            <p class="testimonial-author">— Raj, CEO at EstablishedCo</p>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">"The video content Sabikshan created got 3x more engagement than our previous work. He thinks strategically about every design decision. Absolute professional."</p>
+            <p class="testimonial-author">— Maya, Content Creator</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+    <h2>Ready to Build Your Premium Brand?</h2>
+    <p>Let's discuss your project and how I can help you establish credibility, stand out, and drive growth.</p>
+    
+    <div class="contact-info">
+        <div>
+            <strong style="color: #2d1b4e;">Email</strong><br>
+            <a href="mailto:your.email@gmail.com">your.email@gmail.com</a>
+        </div>
+        <div>
+            <strong style="color: #2d1b4e;">Instagram</strong><br>
+            <a href="https://instagram.com/sabikshan.designs" target="_blank">@sabikshan.designs</a>
+        </div>
+        <div>
+            <strong style="color: #2d1b4e;">WhatsApp</strong><br>
+            <a href="https://wa.me/94727375735">+94 273 75735</a>
+        </div>
+    </div>
+
+    <a href="mailto:sabikshan98@gmail.com class="cta-button">Send Me an Email</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2024 Sabikshan Design. All rights reserved. | Strategic Design + Creative Direction</p>
+</footer>
+
+</body>
+</html>
